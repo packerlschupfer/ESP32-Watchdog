@@ -1,0 +1,46 @@
+{
+  "name": "ESP32-Watchdog",
+  "version": "0.1.0",
+  "description": "ESP32 task watchdog timer with IWatchdog interface for dependency injection and testing",
+  "keywords": [
+    "watchdog",
+    "esp32",
+    "freertos",
+    "task",
+    "timer",
+    "monitoring",
+    "esp-idf",
+    "twdt"
+  ],
+  "authors": [
+    {
+      "name": "packerlschupfer",
+      "email": "packerlschupfer@noreply.github.com",
+      "maintainer": true
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/packerlschupfer/ESP32-Watchdog.git"
+  },
+  "homepage": "https://github.com/packerlschupfer/ESP32-Watchdog",
+  "license": "MIT",
+  "frameworks": [
+    "arduino",
+    "espidf"
+  ],
+  "platforms": [
+    "espressif32"
+  ],
+  "headers": "Watchdog.h",
+  "dependencies": {},
+  "export": {
+    "include": [
+      "src/IWatchdog.h",
+      "src/Watchdog.h",
+      "src/WatchdogLog.h",
+      "src/WatchdogDebug.h",
+      "src/Watchdog.cpp"
+    ]
+  }
+}
