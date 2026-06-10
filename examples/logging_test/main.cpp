@@ -16,7 +16,7 @@
 // Check build configuration
 #ifdef USE_CUSTOM_LOGGER
     #include <Logger.h>
-    #include <LogInterfaceImpl.h>
+    #include <LogInterface.h>  // LogInterfaceImpl.cpp is auto-compiled by the Logger library
     #define LOGGER_TYPE "Custom Logger"
 #else
     #define LOGGER_TYPE "ESP-IDF"

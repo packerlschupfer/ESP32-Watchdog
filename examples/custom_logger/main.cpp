@@ -12,7 +12,7 @@
 
 // Include Logger and implementation (ONCE in main.cpp)
 #include <Logger.h>
-#include <LogInterfaceImpl.h>
+#include <LogInterface.h>  // LogInterfaceImpl.cpp is auto-compiled by the Logger library
 
 // Now include Watchdog - it will use custom Logger
 #include <Watchdog.h>

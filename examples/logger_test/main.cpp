@@ -13,7 +13,7 @@
 
 #ifdef USE_CUSTOM_LOGGER
     #include <Logger.h>
-    #include <LogInterfaceImpl.h>
+    #include <LogInterface.h>  // LogInterfaceImpl.cpp is auto-compiled by the Logger library
 #endif
 
 #include <Arduino.h>
