@@ -16,7 +16,7 @@
 // Check build configuration
 #ifdef USE_CUSTOM_LOGGER
     #include <Logger.h>
-    #include <LogInterfaceImpl.h>
+    #include <LogInterface.h>  // LogInterfaceImpl.cpp is auto-compiled by the Logger library
     #define LOGGER_TYPE "Custom Logger"
 #else
     #define LOGGER_TYPE "ESP-IDF"
@@ -158,7 +158,7 @@ void loop() {
             Watchdog::TaskInfo info;
             if (watchdog.getTaskInfo("Problem", info)) {
                 Serial.printf("[Main] Problem task: missed=%lu, last feed=%lu ms ago\n",
-                    info.missedFeeds,
+                    (unsigned long)info.missedFeeds.load(),
                     (xTaskGetTickCount() - info.lastFeedTime) * portTICK_PERIOD_MS);
             }
         }

@@ -16,7 +16,7 @@
 #ifdef USE_CUSTOM_LOGGER
     // When using custom logger, include these in main.cpp
     #include <Logger.h>
-    #include <LogInterfaceImpl.h>
+    #include <LogInterface.h>  // LogInterfaceImpl.cpp is auto-compiled by the Logger library
 #endif
 
 // Include Watchdog - it will use appropriate logging based on USE_CUSTOM_LOGGER

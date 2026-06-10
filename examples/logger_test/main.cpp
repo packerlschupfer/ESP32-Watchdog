@@ -13,13 +13,13 @@
 
 #ifdef USE_CUSTOM_LOGGER
     #include <Logger.h>
-    #include <LogInterfaceImpl.h>
+    #include <LogInterface.h>  // LogInterfaceImpl.cpp is auto-compiled by the Logger library
 #endif
 
 #include <Arduino.h>
 #include <Watchdog.h>
 
-Watchdog watchdog;
+Watchdog& watchdog = Watchdog::getInstance();
 
 void testTask(void* pvParameters) {
     const char* taskName = (const char*)pvParameters;

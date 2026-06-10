@@ -12,7 +12,7 @@
 
 // Include Logger and implementation (ONCE in main.cpp)
 #include <Logger.h>
-#include <LogInterfaceImpl.h>
+#include <LogInterface.h>  // LogInterfaceImpl.cpp is auto-compiled by the Logger library
 
 // Now include Watchdog - it will use custom Logger
 #include <Watchdog.h>
@@ -91,7 +91,7 @@ void monitorTask(void* parameter) {
             Watchdog::TaskInfo info;
             if (watchdog.getTaskInfo("ProblematicTask", info)) {
                 Serial.printf("[Monitor] Task '%s': missed feeds=%lu, last feed=%lu ms ago\n",
-                    info.taskName, info.missedFeeds, 
+                    info.name, (unsigned long)info.missedFeeds.load(),
                     (xTaskGetTickCount() - info.lastFeedTime) * portTICK_PERIOD_MS);
             }
         } else {
