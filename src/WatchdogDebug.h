@@ -14,7 +14,7 @@
 // Performance timing macros
 #ifdef WATCHDOG_DEBUG
     #define WDOG_TIME_START() unsigned long _wdog_start = millis()
-    #define WDOG_TIME_END(msg) WDOG_LOG_D("Timing: %s took %lu ms", msg, millis() - _wdog_start)
+    #define WDOG_TIME_END(msg) WDOG_LOG_D("Timing: %s took %lu ms", msg, (unsigned long)(millis() - _wdog_start))
 #else
     #define WDOG_TIME_START() ((void)0)
     #define WDOG_TIME_END(msg) ((void)0)
@@ -26,9 +26,9 @@
         WDOG_LOG_D("Task Info: %s", info.taskName); \
         WDOG_LOG_D("  Handle: %p", info.taskHandle); \
         WDOG_LOG_D("  Critical: %s", info.isCritical ? "Yes" : "No"); \
-        WDOG_LOG_D("  Feed Interval: %lu ms", info.feedIntervalMs); \
-        WDOG_LOG_D("  Last Feed: %lu ticks ago", xTaskGetTickCount() - info.lastFeedTime); \
-        WDOG_LOG_D("  Missed Feeds: %lu", info.missedFeeds); \
+        WDOG_LOG_D("  Feed Interval: %lu ms", (unsigned long)info.feedIntervalMs); \
+        WDOG_LOG_D("  Last Feed: %lu ticks ago", (unsigned long)(xTaskGetTickCount() - info.lastFeedTime)); \
+        WDOG_LOG_D("  Missed Feeds: %lu", (unsigned long)info.missedFeeds); \
     } while(0)
 #else
     #define WDOG_DUMP_TASK_INFO(info) ((void)0)

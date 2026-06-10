@@ -13,7 +13,7 @@ bool Watchdog::init(uint32_t timeoutSeconds, bool panicOnTimeout) noexcept {
     }
     
     if (timeoutSeconds == 0 || timeoutSeconds > 3600) {  // Max 1 hour
-        WDOG_LOG_E("Invalid timeout: %lu seconds", timeoutSeconds);
+        WDOG_LOG_E("Invalid timeout: %lu seconds", (unsigned long)timeoutSeconds);
         return false;
     }
     
@@ -24,7 +24,7 @@ bool Watchdog::init(uint32_t timeoutSeconds, bool panicOnTimeout) noexcept {
     
     if (err == ESP_OK) {
         initialized_ = true;
-        WDOG_LOG_I("Watchdog initialized with %lu second timeout", timeoutSeconds);
+        WDOG_LOG_I("Watchdog initialized with %lu second timeout", (unsigned long)timeoutSeconds);
         return true;
     } else if (err == ESP_ERR_INVALID_STATE) {
         // Already initialized by someone else
@@ -112,8 +112,8 @@ bool Watchdog::registerCurrentTask(const char* taskName, bool isCritical, uint32
         // Immediately feed to prevent early timeout
         esp_task_wdt_reset();
         
-        WDOG_LOG_I("Task %s registered (critical=%d, interval=%lums)", 
-                 taskName, isCritical, info.feedIntervalMs);
+        WDOG_LOG_I("Task %s registered (critical=%d, interval=%lums)",
+                 taskName, isCritical, (unsigned long)info.feedIntervalMs);
         return true;
     }
     
@@ -230,8 +230,8 @@ size_t Watchdog::checkHealth() noexcept {
             if (timeSinceLastFeedMs > task.feedIntervalMs * 2) {
                 task.missedFeeds++;
                 unhealthyCount++;
-                WDOG_LOG_W("Task %s hasn't fed watchdog for %lums (expected %lums)", 
-                         task.name, timeSinceLastFeedMs, task.feedIntervalMs);
+                WDOG_LOG_W("Task %s hasn't fed watchdog for %lums (expected %lums)",
+                         task.name, (unsigned long)timeSinceLastFeedMs, (unsigned long)task.feedIntervalMs);
             }
         }
         xSemaphoreGive(taskListMutex_);
