@@ -91,7 +91,7 @@ void monitorTask(void* parameter) {
             Watchdog::TaskInfo info;
             if (watchdog.getTaskInfo("ProblematicTask", info)) {
                 Serial.printf("[Monitor] Task '%s': missed feeds=%lu, last feed=%lu ms ago\n",
-                    info.taskName, info.missedFeeds, 
+                    info.name, (unsigned long)info.missedFeeds.load(),
                     (xTaskGetTickCount() - info.lastFeedTime) * portTICK_PERIOD_MS);
             }
         } else {

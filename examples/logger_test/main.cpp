@@ -19,7 +19,7 @@
 #include <Arduino.h>
 #include <Watchdog.h>
 
-Watchdog watchdog;
+Watchdog& watchdog = Watchdog::getInstance();
 
 void testTask(void* pvParameters) {
     const char* taskName = (const char*)pvParameters;

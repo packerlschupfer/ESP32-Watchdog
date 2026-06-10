@@ -158,7 +158,7 @@ void loop() {
             Watchdog::TaskInfo info;
             if (watchdog.getTaskInfo("Problem", info)) {
                 Serial.printf("[Main] Problem task: missed=%lu, last feed=%lu ms ago\n",
-                    info.missedFeeds,
+                    (unsigned long)info.missedFeeds.load(),
                     (xTaskGetTickCount() - info.lastFeedTime) * portTICK_PERIOD_MS);
             }
         }
